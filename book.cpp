@@ -65,7 +65,7 @@ void Book::input()
     getline(cin, genre, '\n');
     cout << "Short description : ";
     getline(cin, shortDescription, '\n');
-    cout << "Year if issue : ";
+    cout << "Year of issue : ";
     getline(cin, yearOfIssue, '\n');
     cout << "Keywords : ";
     getline(cin, keywords, '\n');

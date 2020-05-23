@@ -1,25 +1,33 @@
 #include "session.h"
 
-string Session::get_username()
+string Session::get_USERNAME()
 {
-    return username;
+    return USERNAME;
 }
+
 bool Session::get_login()
 {
     return login;
 }
+
 string Session::get_loginFile()
 {
     return loginFile;
 }
+
+void Session::set_bookFile(string x){
+    bookFile = x;
+}
+
 string Session::get_bookFile()
 {
     return bookFile;
 }
 
+
 void Session::loginUser()
 {
-    if (login)
+    if (get_login())
     {
         cout << "The user is already logged in " << endl;
         return;
@@ -35,7 +43,7 @@ void Session::loginUser()
     cin >> password;
     if (username == "admin" && password == "i<3c++")
     { //тва със звездичката не се сещам как може да стане освен да вкарам паролата в някакъв динамичен масив и от там един фор да принтва '*' за всяко i
-        username.assign("admin");
+        USERNAME.assign("admin");
         login = true;
     }
     else
@@ -50,7 +58,7 @@ void Session::loginUser()
                 fin >> fPassword;
                 if (fUserName == username && fPassword == password)
                 {
-                    username.assign(username);
+                    USERNAME.assign(username);
                     login = true;
                 }
             }
@@ -62,7 +70,7 @@ void Session::loginUser()
     }
     if (login)
     {
-        cout << "Welcome, " << username << endl;
+        cout << "Welcome, " << USERNAME << endl;
     }
     else
     {
@@ -70,8 +78,8 @@ void Session::loginUser()
     }
 }
 
-void Session::logout()
+void Session::logoutUser()
 {
     login = false;
-    username.assign("");
+    USERNAME.assign("");
 }

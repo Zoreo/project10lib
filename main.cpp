@@ -1,7 +1,5 @@
 #include "library.h"
-
-int main()
-{
+int main() {
     Session session;
     Library library(session);
     library.run();

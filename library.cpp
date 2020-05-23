@@ -305,7 +305,7 @@ void Library::userRemove()
     ifstream fin(session.get_loginFile());
     if (fin.is_open())
     {
-        session.logout();
+        session.logoutUser();
         while (!fin.eof() && !session.get_login())
         {
             fin >> fUserName;
@@ -364,7 +364,8 @@ void Library::saveAs()
 {
     string filename;
     cin >> filename;
-    ofstream out(filename);
+    session.set_bookFile(filename);
+    ofstream out(session.get_bookFile());
     if (out.is_open())
     {
         for (int i = 0; i < books.size(); ++i)
@@ -376,7 +377,7 @@ void Library::saveAs()
     }
     else
     {
-        perror(filename.c_str());
+        perror(session.get_bookFile().c_str());
     }
 }
 
@@ -391,7 +392,7 @@ void Library::userMenu()
         {
             string arg1;
             cin >> arg1;
-            if (session.get_login() && session.get_username() == "admin")
+            if (session.get_login() && session.get_USERNAME() == "admin")
             {
                 if (arg1 == "add")
                 {
@@ -434,7 +435,7 @@ void Library::userMenu()
         }
         else if (option == "logout" && session.get_login())
         {
-            session.logout();
+            session.logoutUser();
         }
         else if (option == "exit")
         {
@@ -456,6 +457,9 @@ void Library::userMenu()
         else if (option == "save")
         {
             save();
+        }
+        else if( option == "saveas"){
+            saveAs();
         }
         else if (option == "help")
         {
