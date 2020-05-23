@@ -70,7 +70,7 @@ void Session::loginUser()
     }
     if (login)
     {
-        cout << "Welcome, " << USERNAME << endl;
+        cout << "welcome, " << USERNAME << endl;
     }
     else
     {

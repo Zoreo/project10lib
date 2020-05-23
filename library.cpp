@@ -388,52 +388,98 @@ void Library::userMenu()
     {
         cout << "> ";
         cin >> option;
-        if (option == "books" && session.get_login())
+        if (option == "books")
         {
             string arg1;
             cin >> arg1;
-            if (session.get_login() && session.get_USERNAME() == "admin")
+            if (!session.get_login())
             {
-                if (arg1 == "add")
+                cout << "You need to log in first.\n";
+            }
+            if (session.get_login())
+            {
+                //admin
+                if (arg1 == "add" && session.get_USERNAME() == "admin")
                 {
                     addBook();
+                    cout << "Book added.\n";
                 }
-                else if (arg1 == "remove")
+                if (arg1 == "add" && session.get_USERNAME() != "admin")
+                {
+                    cout << "admin level access is required to add books.\n";
+                }
+                if (arg1 == "remove" && session.get_USERNAME() == "admin")
                 {
                     removeBook();
+                    cout << "Book removed.\n";
                 }
-            }
-            if (arg1 == "all")
-            {
-                printAllBooks();
-            }
-            else if (arg1 == "find")
-            {
-                string arg2;
-                cin >> arg2;
-                if (arg2 == "title")
+                if (arg1 == "remove" && session.get_USERNAME() != "admin")
                 {
-                    findBookOnTitle();
+                    cout << "admin level access is required to remove books.\n";
                 }
-                else if (arg2 == "author")
+
+                //user level required
+                if (arg1 == "all")
                 {
-                    findBookOnAuthor();
+                    printAllBooks();
                 }
-                else if (arg2 == "tag")
+                else if (arg1 == "find")
                 {
-                    findBookOnTag();
+                    string arg2;
+                    cin >> arg2;
+                    if (arg2 == "title")
+                    {
+                        findBookOnTitle();
+                    }
+                    else if (arg2 == "author")
+                    {
+                        findBookOnAuthor();
+                    }
+                    else if (arg2 == "tag")
+                    {
+                        findBookOnTag();
+                    }
                 }
-            }
-            else if (arg1 == "info")
-            {
-                bookInfo();
-            }
-            else if (arg1 == "sort")
-            {
-                sort();
+                else if (arg1 == "info")
+                {
+                    bookInfo();
+                }
+                else if (arg1 == "sort")
+                {
+                    sort();
+                }
             }
         }
-        else if (option == "logout" && session.get_login())
+        //admin level rq
+        else if (option == "user")
+        {
+            string arg1;
+            cin >> arg1;
+            if (!session.get_login())
+            {
+                cout << "You need to log in first.\n";
+            }
+            if (arg1 == "add" && session.get_USERNAME() == "admin")
+            {
+                userAdd();
+                cout << "User added.\n";
+            }
+            if (arg1 == "add" && session.get_USERNAME() != "admin")
+            {
+                cout << "admin level access is required to add users.\n";
+            }
+            if (arg1 == "remove" && session.get_USERNAME() == "admin")
+            {
+                userRemove();
+                cout << "User removed.\n";
+            }
+            if (arg1 == "remove" && session.get_USERNAME() != "admin")
+            {
+                cout << "admin level access is required to remove users.\n";
+            }
+        }
+        //commands with no required access level
+        else if (option == "logout")
         {
             session.logoutUser();
         }
@@ -458,7 +504,8 @@ void Library::userMenu()
         {
             save();
         }
-        else if( option == "saveas"){
+        else if (option == "saveas")
+        {
             saveAs();
         }
         else if (option == "help")
@@ -482,19 +529,6 @@ void Library::userMenu()
             cout << "books remove:                             removes a book //admin only\n";
             cout << "user add:                                 adds a user    //admin only\n";
             cout << "user remove:                              removes a user //admin only\n";
-        }
-        else if (option == "user")
-        {
-            string arg1;
-            cin >> arg1;
-            if (arg1 == "add")
-            {
-                userAdd();
-            }
-            else if (arg1 == "remove")
-            {
-                userRemove();
-            }
         }
     }
 }
