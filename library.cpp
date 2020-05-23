@@ -478,11 +478,15 @@ void Library::userMenu()
                 cout << "admin level access is required to remove users.\n";
             }
         }
-        //commands with no required access level
-        else if (option == "logout")
+        else if (option == "logout" && session.get_login())
         {
             session.logoutUser();
         }
+        else if (option == "logout" && !session.get_login())
+        {
+            cout << "You're already logged out";
+        }
+        //commands with no required access level
         else if (option == "exit")
         {
             exit(0);
