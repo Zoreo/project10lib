@@ -4,7 +4,7 @@
 #include <vector>
 using namespace std;
 
-class Book
+struct Book
 {
 private:
     string author;
