@@ -13,11 +13,11 @@ private:
     string bookFile = "books.txt";
 
 public:
-    string get_USERNAME();
-    bool get_login();
-    string get_loginFile();
-    string get_bookFile();
-    void set_bookFile(string x);
+    string getUsername();
+    bool getLogin();
+    string getLoginFile();
+    string getBookFile();
+    void setBookFile(string x);
     void loginUser();
     void logoutUser();
 };

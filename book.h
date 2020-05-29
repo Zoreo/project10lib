@@ -19,14 +19,14 @@ private:
 public:
     Book();
     Book(string author, string title, string genre, string shortDescription, string keywords, float rating, int bookId);
-    string get_author();
-    string get_title();
-    string get_genre();
-    string get_shortDescription();
-    string get_yearOfIssue();
-    string get_keywords();
-    float get_rating();
-    int get_book_id();
+    string getAuthor();
+    string getTitle();
+    string getGenre();
+    string getShortDescription();
+    string getYearOfIssue();
+    string getKeywords();
+    float getRating();
+    int getBookId();
     void readFile(ifstream &in);
     void input();
     void writeFile(ofstream &out);

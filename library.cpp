@@ -17,7 +17,7 @@ void Library::findBookOnTitle()
         title.assign(title.substr(1));
     for (int i = 0; i < books.size(); ++i)
     {
-        if (books[i]->get_title() == title)
+        if (books[i]->getTitle() == title)
             books[i]->print();
     }
 }
@@ -30,7 +30,7 @@ void Library::findBookOnAuthor()
         author.assign(author.substr(1));
     for (int i = 0; i < books.size(); ++i)
     {
-        if (books[i]->get_author() == author)
+        if (books[i]->getAuthor() == author)
             books[i]->print();
     }
 }
@@ -43,7 +43,7 @@ void Library::findBookOnTag()
         tag.assign(tag.substr(1));
     for (int i = 0; i < books.size(); ++i)
     {
-        if (books[i]->get_keywords().find(tag) == string::npos)
+        if (books[i]->getKeywords().find(tag) == string::npos)
             books[i]->print();
     }
 }
@@ -55,7 +55,7 @@ void Library::bookInfo()
     cin.ignore();
     for (int i = 0; i < books.size(); ++i)
     {
-        if (books[i]->get_book_id() == book_id)
+        if (books[i]->getBookId() == book_id)
             books[i]->print();
     }
 }
@@ -73,7 +73,7 @@ void Library::sortOnAuthorDesc()
     int n = books.size();
     for (int i = 0; i < n - 1; i++)
         for (int j = 0; j < n - i - 1; j++)
-            if (books[j]->get_author() < books[j + 1]->get_author())
+            if (books[j]->getAuthor() < books[j + 1]->getAuthor())
             { //bubble sort, eventualno moje da sme smeni s neshto drugo
                 Book *temp = books[j];
                 books[j] = books[j + 1];
@@ -87,7 +87,7 @@ void Library::sortOnTitleDesc()
     int n = books.size();
     for (int i = 0; i < n - 1; i++)
         for (int j = 0; j < n - i - 1; j++)
-            if (books[j]->get_title() < books[j + 1]->get_title())
+            if (books[j]->getTitle() < books[j + 1]->getTitle())
             {
                 Book *temp = books[j];
                 books[j] = books[j + 1];
@@ -101,7 +101,7 @@ void Library::sortOnYearDesc()
     int n = books.size();
     for (int i = 0; i < n - 1; i++)
         for (int j = 0; j < n - i - 1; j++)
-            if (books[j]->get_yearOfIssue() < books[j + 1]->get_yearOfIssue())
+            if (books[j]->getYearOfIssue() < books[j + 1]->getYearOfIssue())
             {
                 Book *temp = books[j];
                 books[j] = books[j + 1];
@@ -115,7 +115,7 @@ void Library::sortOnRatingDesc()
     int n = books.size();
     for (int i = 0; i < n - 1; i++)
         for (int j = 0; j < n - i - 1; j++)
-            if (books[j]->get_rating() < books[j + 1]->get_rating())
+            if (books[j]->getRating() < books[j + 1]->getRating())
             {
                 Book *temp = books[j];
                 books[j] = books[j + 1];
@@ -129,7 +129,7 @@ void Library::sortOnAuthorAcc()
     int n = books.size();
     for (int i = 0; i < n - 1; i++)
         for (int j = 0; j < n - i - 1; j++)
-            if (books[j]->get_author() > books[j + 1]->get_author())
+            if (books[j]->getAuthor() > books[j + 1]->getAuthor())
             {
                 Book *temp = books[j];
                 books[j] = books[j + 1];
@@ -143,7 +143,7 @@ void Library::sortOnTitleAcc()
     int n = books.size();
     for (int i = 0; i < n - 1; i++)
         for (int j = 0; j < n - i - 1; j++)
-            if (books[j]->get_title() > books[j + 1]->get_title())
+            if (books[j]->getTitle() > books[j + 1]->getTitle())
             {
                 Book *temp = books[j];
                 books[j] = books[j + 1];
@@ -157,7 +157,7 @@ void Library::sortOnYearAcc()
     int n = books.size();
     for (int i = 0; i < n - 1; i++)
         for (int j = 0; j < n - i - 1; j++)
-            if (books[j]->get_yearOfIssue() > books[j + 1]->get_yearOfIssue())
+            if (books[j]->getYearOfIssue() > books[j + 1]->getYearOfIssue())
             {
                 Book *temp = books[j];
                 books[j] = books[j + 1];
@@ -171,7 +171,7 @@ void Library::sortOnRatingAcc()
     int n = books.size();
     for (int i = 0; i < n - 1; i++)
         for (int j = 0; j < n - i - 1; j++)
-            if (books[j]->get_rating() > books[j + 1]->get_rating())
+            if (books[j]->getRating() > books[j + 1]->getRating())
             {
                 Book *temp = books[j];
                 books[j] = books[j + 1];
@@ -257,7 +257,7 @@ void Library::removeBook()
     {
         for (int i = 0; i < books.size(); ++i)
         {
-            if (books[i]->get_book_id() != id)
+            if (books[i]->getBookId() != id)
             {
                 temp.push_back(books[i]);
             }
@@ -267,7 +267,7 @@ void Library::removeBook()
     {
         for (int i = 0; i < books.size(); ++i)
         {
-            if (books[i]->get_author() != book)
+            if (books[i]->getAuthor() != book)
             {
                 temp.push_back(books[i]);
             }
@@ -283,7 +283,7 @@ void Library::userAdd()
     string fPassword;
     cin >> fUserName;
     cin >> fPassword;
-    ofstream fout(session.get_loginFile(), ios::app);
+    ofstream fout(session.getLoginFile(), ios::app);
     if (fout.is_open())
     {
         fout << fUserName << endl;
@@ -291,7 +291,7 @@ void Library::userAdd()
     }
     else
     {
-        perror(session.get_loginFile().c_str());
+        perror(session.getLoginFile().c_str());
     }
 }
 
@@ -302,11 +302,11 @@ void Library::userRemove()
     string fPassword;
     string username;
     cin >> username;
-    ifstream fin(session.get_loginFile());
+    ifstream fin(session.getLoginFile());
     if (fin.is_open())
     {
         session.logoutUser();
-        while (!fin.eof() && !session.get_login())
+        while (!fin.eof() && !session.getLogin())
         {
             fin >> fUserName;
             fin >> fPassword;
@@ -319,12 +319,12 @@ void Library::userRemove()
     }
     else
     {
-        perror(session.get_loginFile().c_str());
+        perror(session.getLoginFile().c_str());
         fin.close();
         return;
     }
     fin.close();
-    ofstream fout(session.get_loginFile());
+    ofstream fout(session.getLoginFile());
     if (fout.is_open())
         for (int i = 0; i < names.size(); ++i)
         {
@@ -333,7 +333,7 @@ void Library::userRemove()
     else
     {
         {
-            perror(session.get_loginFile().c_str());
+            perror(session.getLoginFile().c_str());
             fout.close();
             return;
         }
@@ -343,7 +343,7 @@ void Library::userRemove()
 
 void Library::save()
 {
-    ofstream out(session.get_bookFile());
+    ofstream out(session.getBookFile());
     if (out.is_open())
     {
         for (int i = 0; i < books.size(); ++i)
@@ -355,7 +355,7 @@ void Library::save()
     }
     else
     {
-        perror(session.get_bookFile().c_str());
+        perror(session.getBookFile().c_str());
     }
     cout /* << session.loginFile */ << "Saved successfully" << endl;
 }
@@ -364,8 +364,8 @@ void Library::saveAs()
 {
     string filename;
     cin >> filename;
-    session.set_bookFile(filename);
-    ofstream out(session.get_bookFile());
+    session.setBookFile(filename);
+    ofstream out(session.getBookFile());
     if (out.is_open())
     {
         for (int i = 0; i < books.size(); ++i)
@@ -377,7 +377,7 @@ void Library::saveAs()
     }
     else
     {
-        perror(session.get_bookFile().c_str());
+        perror(session.getBookFile().c_str());
     }
 }
 
@@ -392,28 +392,28 @@ void Library::userMenu()
         {
             string arg1;
             cin >> arg1;
-            if (!session.get_login())
+            if (!session.getLogin())
             {
                 cout << "You need to log in first.\n";
             }
-            if (session.get_login())
+            if (session.getLogin())
             {
                 //admin
-                if (arg1 == "add" && session.get_USERNAME() == "admin")
+                if (arg1 == "add" && session.getUsername() == "admin")
                 {
                     addBook();
                     cout << "Book added.\n";
                 }
-                if (arg1 == "add" && session.get_USERNAME() != "admin")
+                if (arg1 == "add" && session.getUsername() != "admin")
                 {
                     cout << "admin level access is required to add books.\n";
                 }
-                if (arg1 == "remove" && session.get_USERNAME() == "admin")
+                if (arg1 == "remove" && session.getUsername() == "admin")
                 {
                     removeBook();
                     cout << "Book removed.\n";
                 }
-                if (arg1 == "remove" && session.get_USERNAME() != "admin")
+                if (arg1 == "remove" && session.getUsername() != "admin")
                 {
                     cout << "admin level access is required to remove books.\n";
                 }
@@ -455,34 +455,34 @@ void Library::userMenu()
         {
             string arg1;
             cin >> arg1;
-            if (!session.get_login())
+            if (!session.getLogin())
             {
                 cout << "You need to log in first.\n";
             }
-            if (arg1 == "add" && session.get_USERNAME() == "admin")
+            if (arg1 == "add" && session.getUsername() == "admin")
             {
                 userAdd();
                 cout << "User added.\n";
             }
-            if (arg1 == "add" && session.get_USERNAME() != "admin")
+            if (arg1 == "add" && session.getUsername() != "admin")
             {
                 cout << "admin level access is required to add users.\n";
             }
-            if (arg1 == "remove" && session.get_USERNAME() == "admin")
+            if (arg1 == "remove" && session.getUsername() == "admin")
             {
                 userRemove();
                 cout << "User removed.\n";
             }
-            if (arg1 == "remove" && session.get_USERNAME() != "admin")
+            if (arg1 == "remove" && session.getUsername() != "admin")
             {
                 cout << "admin level access is required to remove users.\n";
             }
         }
-        else if (option == "logout" && session.get_login())
+        else if (option == "logout" && session.getLogin())
         {
             session.logoutUser();
         }
-        else if (option == "logout" && !session.get_login())
+        else if (option == "logout" && !session.getLogin())
         {
             cout << "You're already logged out";
         }
@@ -502,7 +502,7 @@ void Library::userMenu()
         else if (option == "close")
         {
             books.clear();
-            cout << "Successfully closed " << session.get_bookFile() << endl;
+            cout << "Successfully closed " << session.getBookFile() << endl;
         }
         else if (option == "save")
         {

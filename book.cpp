@@ -8,35 +8,35 @@ Book::Book(string author, string title, string genre, string shortDescription,
                                                         keywords(std::move(keywords)),
                                                         rating(rating), book_id(bookId) {}
 
-string Book::get_author()
+string Book::getAuthor()
 {
     return author;
 }
-string Book::get_title()
+string Book::getTitle()
 {
     return title;
 }
-string Book::get_genre()
+string Book::getGenre()
 {
     return genre;
 }
-string Book::get_shortDescription()
+string Book::getShortDescription()
 {
     return shortDescription;
 }
-string Book::get_yearOfIssue()
+string Book::getYearOfIssue()
 {
     return yearOfIssue;
 }
-string Book::get_keywords()
+string Book::getKeywords()
 {
     return keywords;
 }
-float Book::get_rating()
+float Book::getRating()
 {
     return rating;
 }
-int Book::get_book_id()
+int Book::getBookId()
 {
     return book_id;
 }

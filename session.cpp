@@ -1,25 +1,25 @@
 #include "session.h"
 
-string Session::get_USERNAME()
+string Session::getUsername()
 {
     return USERNAME;
 }
 
-bool Session::get_login()
+bool Session::getLogin()
 {
     return login;
 }
 
-string Session::get_loginFile()
+string Session::getLoginFile()
 {
     return loginFile;
 }
 
-void Session::set_bookFile(string x){
+void Session::setBookFile(string x){
     bookFile = x;
 }
 
-string Session::get_bookFile()
+string Session::getBookFile()
 {
     return bookFile;
 }
@@ -27,7 +27,7 @@ string Session::get_bookFile()
 
 void Session::loginUser()
 {
-    if (get_login())
+    if (getLogin())
     {
         cout << "The user is already logged in " << endl;
         return;
