@@ -2,7 +2,8 @@
 
 Book::Book() {}
 Book::Book(string author, string title, string genre, string shortDescription,
-           string keywords, float rating, int bookId) : author(std::move(author)), title(std::move(title)),
+           string keywords, float rating, int bookId) : author(std::move(author)), 
+                                                        title(std::move(title)),
                                                         genre(std::move(genre)),
                                                         shortDescription(std::move(shortDescription)),
                                                         keywords(std::move(keywords)),

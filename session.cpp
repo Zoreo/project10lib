@@ -24,7 +24,6 @@ string Session::getBookFile()
     return bookFile;
 }
 
-
 void Session::loginUser()
 {
     if (getLogin())
@@ -39,10 +38,9 @@ void Session::loginUser()
     cout << "Enter Username : ";
     cin >> username;
     cout << "Enter Password : ";
-    //magic
     cin >> password;
     if (username == "admin" && password == "i<3c++")
-    { //тва със звездичката не се сещам как може да стане освен да вкарам паролата в някакъв динамичен масив и от там един фор да принтва '*' за всяко i
+    {
         USERNAME.assign("admin");
         login = true;
     }

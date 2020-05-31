@@ -2,6 +2,7 @@
 #include <string>
 #include <fstream>
 #include <vector>
+#include <functional>
 #include "book.h"
 #include "session.h"
 using namespace std;
@@ -20,6 +21,8 @@ public:
     void findBookOnTag();
     void bookInfo();
     void printAllBooks();
+    void bubble_sort(std::function<bool(Book, Book)>);
+    void sortOnAuthorDescnew();
     void sortOnAuthorDesc();
     void sortOnTitleDesc();
     void sortOnYearDesc();

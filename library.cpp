@@ -6,7 +6,7 @@ void Library::addBook()
 {
     Book *b = new Book();
     b->input();
-    books.push_back(b); //that part here
+    books.push_back(b);
 }
 
 void Library::findBookOnTitle()
@@ -68,140 +68,88 @@ void Library::printAllBooks()
     }
 }
 
-void Library::sortOnAuthorDesc()
+void Library::bubble_sort(std::function<bool(Book, Book)> comparator)
 {
     int n = books.size();
     for (int i = 0; i < n - 1; i++)
         for (int j = 0; j < n - i - 1; j++)
-            if (books[j]->getAuthor() < books[j + 1]->getAuthor())
-            { //bubble sort, eventualno moje da sme smeni s neshto drugo
-                Book *temp = books[j];
-                books[j] = books[j + 1];
-                books[j + 1] = temp;
-            }
-    cout << "Sorting Completed On author in Descending order" << endl;
-}
-
-void Library::sortOnTitleDesc()
-{
-    int n = books.size();
-    for (int i = 0; i < n - 1; i++)
-        for (int j = 0; j < n - i - 1; j++)
-            if (books[j]->getTitle() < books[j + 1]->getTitle())
+            if (comparator(*books[j], *books[j + 1]))
             {
                 Book *temp = books[j];
                 books[j] = books[j + 1];
                 books[j + 1] = temp;
             }
+}
+
+void Library::sortOnAuthorDesc()
+{
+    std::function<bool(Book, Book)> compareAuthors = [](Book book1, Book book2) {
+        return (book1.getAuthor() < book2.getAuthor());
+    };
+    bubble_sort(compareAuthors);
+    cout << "Sorting Completed On author in Descending order" << endl;
+}
+
+void Library::sortOnTitleDesc(){
+    std::function<bool(Book, Book)> compareTitles = [](Book book1, Book book2){
+        return (book1.getTitle() < book2.getTitle());
+    };
+    bubble_sort(compareTitles);
     cout << "Sorting Completed On Title in Descending order" << endl;
 }
 
 void Library::sortOnYearDesc()
 {
-    int n = books.size();
-    for (int i = 0; i < n - 1; i++)
-        for (int j = 0; j < n - i - 1; j++)
-            if (books[j]->getYearOfIssue() < books[j + 1]->getYearOfIssue())
-            {
-                Book *temp = books[j];
-                books[j] = books[j + 1];
-                books[j + 1] = temp;
-            }
+    std::function<bool(Book, Book)> compareYears = [](Book book1, Book book2){
+        return (book1.getYearOfIssue() < book2.getYearOfIssue());
+    };
+    bubble_sort(compareYears);
     cout << "Sorting Completed On Year in Descending order" << endl;
 }
 
 void Library::sortOnRatingDesc()
 {
-    int n = books.size();
-    for (int i = 0; i < n - 1; i++)
-        for (int j = 0; j < n - i - 1; j++)
-            if (books[j]->getRating() < books[j + 1]->getRating())
-            {
-                Book *temp = books[j];
-                books[j] = books[j + 1];
-                books[j + 1] = temp;
-            }
-    cout << "Sorting Completed On Rating in Acceding order" << endl;
+    std::function<bool(Book, Book)> compareRatings = [](Book book1, Book book2){
+        return (book1.getRating() < book2.getRating());
+    };
+    bubble_sort(compareRatings);
+    cout << "Sorting Completed On Rating in Desceding order" << endl;
 }
 
 void Library::sortOnAuthorAcc()
 {
-    int n = books.size();
-    for (int i = 0; i < n - 1; i++)
-        for (int j = 0; j < n - i - 1; j++)
-            if (books[j]->getAuthor() > books[j + 1]->getAuthor())
-            {
-                Book *temp = books[j];
-                books[j] = books[j + 1];
-                books[j + 1] = temp;
-            }
+    std::function<bool(Book, Book)> compareAuthors = [](Book book1, Book book2) {
+        return (book1.getAuthor() > book2.getAuthor());
+    };
+    bubble_sort(compareAuthors);
     cout << "Sorting Completed On Author in Acceding order" << endl;
 }
 
 void Library::sortOnTitleAcc()
 {
-    int n = books.size();
-    for (int i = 0; i < n - 1; i++)
-        for (int j = 0; j < n - i - 1; j++)
-            if (books[j]->getTitle() > books[j + 1]->getTitle())
-            {
-                Book *temp = books[j];
-                books[j] = books[j + 1];
-                books[j + 1] = temp;
-            }
+    std::function<bool(Book, Book)> compareTitles = [](Book book1, Book book2) {
+        return (book1.getTitle() > book2.getTitle());
+    };
+    bubble_sort(compareTitles);
     cout << "Sorting Completed On Title in Acceding order" << endl;
 }
 
 void Library::sortOnYearAcc()
 {
-    int n = books.size();
-    for (int i = 0; i < n - 1; i++)
-        for (int j = 0; j < n - i - 1; j++)
-            if (books[j]->getYearOfIssue() > books[j + 1]->getYearOfIssue())
-            {
-                Book *temp = books[j];
-                books[j] = books[j + 1];
-                books[j + 1] = temp;
-            }
-    cout << "Sorting Completed On Year Acceding order" << endl;
+    std::function<bool(Book, Book)> compareYears = [](Book book1, Book book2) {
+        return (book1.getYearOfIssue() > book2.getYearOfIssue());
+    };
+    bubble_sort(compareYears);
+    cout << "Sorting Completed On Year in Acceding order" << endl;
 }
 
 void Library::sortOnRatingAcc()
 {
-    int n = books.size();
-    for (int i = 0; i < n - 1; i++)
-        for (int j = 0; j < n - i - 1; j++)
-            if (books[j]->getRating() > books[j + 1]->getRating())
-            {
-                Book *temp = books[j];
-                books[j] = books[j + 1];
-                books[j + 1] = temp;
-            }
-    cout << "Sorting Completed On Rating Acceding order" << endl;
-}
-
-void Library::readFile()
-{
-    string fileName = "books.txt";
-    cin >> fileName;
-    ifstream fin(fileName);
-    if (fin.is_open())
-    {
-        while (!fin.eof())
-        { //end of file
-            Book *b = new Book();
-            b->readFile(fin);
-            books.push_back(b);
-        }
-    }
-    else
-    {
-        perror(fileName.c_str());
-        fin.close();
-        return;
-    }
-    fin.close();
-    cout << "File read Successfully" << endl;
+    std::function<bool(Book, Book)> compareRatings = [](Book book1, Book book2){
+        return (book1.getRating() > book2.getRating());
+    };
+    bubble_sort(compareRatings);
+    cout << "Sorting Completed On Rating in Accending order" << endl;
 }
 
 void Library::sort()
@@ -239,6 +187,30 @@ void Library::sort()
         else
             sortOnRatingAcc();
     }
+}
+
+void Library::readFile()
+{
+    string fileName = "books.txt";
+    cin >> fileName;
+    ifstream fin(fileName);
+    if (fin.is_open())
+    {
+        while (!fin.eof())
+        {
+            Book *b = new Book();
+            b->readFile(fin);
+            books.push_back(b);
+        }
+    }
+    else
+    {
+        perror(fileName.c_str());
+        fin.close();
+        return;
+    }
+    fin.close();
+    cout << "File read Successfully" << endl;
 }
 
 void Library::removeBook()
